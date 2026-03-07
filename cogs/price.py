@@ -39,7 +39,7 @@ class PriceCog(commands.Cog):
         fields["24h Change"] = f"{arrow} {change_24h:+.2f}%"
 
         embed = btc_embed(title="Bitcoin Price", fields=fields)
-        embed.set_footer(text="Price via CoinGecko | Not financial advice | bitcoinsapi.com")
+        embed.set_footer(text="Powered by Satoshi API | Not financial advice | bitcoinsapi.com")
         await interaction.followup.send(embed=embed)
 
 

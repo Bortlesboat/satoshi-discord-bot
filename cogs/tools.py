@@ -58,7 +58,7 @@ class ToolsCog(commands.Cog):
             }
 
         embed = btc_embed(title="Convert", fields=fields)
-        embed.set_footer(text="Price via CoinGecko | Not financial advice | bitcoinsapi.com")
+        embed.set_footer(text="Powered by Satoshi API | Not financial advice | bitcoinsapi.com")
         await interaction.followup.send(embed=embed)
 
     @app_commands.command(name="help", description="List all Satoshi Bot commands")

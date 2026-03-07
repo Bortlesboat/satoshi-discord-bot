@@ -65,7 +65,7 @@ python -m pytest tests/ -v
 
 ## Disclaimer
 
-Data is provided for informational purposes only. Not financial advice. Price data sourced from CoinGecko. Not guaranteed to be accurate or current.
+Data is provided for informational purposes only. Not financial advice. Not guaranteed to be accurate or current.
 
 ## License
 
