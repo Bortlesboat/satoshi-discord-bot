@@ -5,6 +5,7 @@ from discord import app_commands
 from discord.ext import commands
 
 from embeds import btc_embed, format_number
+from usage_log import get_command_counts, get_commands_since, get_total_commands, get_unique_guilds, get_unique_users
 
 
 class ToolsCog(commands.Cog):
@@ -58,7 +59,6 @@ class ToolsCog(commands.Cog):
             }
 
         embed = btc_embed(title="Convert", fields=fields)
-        embed.set_footer(text="Powered by Satoshi API | Not financial advice | bitcoinsapi.com")
         await interaction.followup.send(embed=embed)
 
     @app_commands.command(name="help", description="List all Satoshi Bot commands")
@@ -100,15 +100,51 @@ class ToolsCog(commands.Cog):
             inline=False,
         )
         embed.add_field(
+            name="Powered by Satoshi API",
+            value=(
+                "All data comes from [bitcoinsapi.com](https://bitcoinsapi.com) — "
+                "a free Bitcoin REST API with 73+ endpoints. "
+                "Developers can build their own tools with the same data."
+            ),
+            inline=False,
+        )
+        embed.add_field(
             name="\u200b",
             value=(
                 "*Data is provided for informational purposes only. "
                 "Not financial advice. Not guaranteed to be accurate or current.*\n\n"
                 "[Add Satoshi Bot to your server](https://discord.com/oauth2/authorize?client_id=1479972638918049895&permissions=2048&scope=bot+applications.commands)"
+                " | [Support Server](https://discord.gg/EB6Jd66EsF)"
             ),
             inline=False,
         )
 
+        await interaction.response.send_message(embed=embed)
+
+
+    @app_commands.command(name="stats", description="Show Satoshi Bot usage statistics")
+    async def stats(self, interaction: discord.Interaction):
+        total = get_total_commands()
+        guilds = get_unique_guilds()
+        users = get_unique_users()
+        today = get_commands_since(86400)
+        week = get_commands_since(604800)
+        counts = get_command_counts()
+
+        top_cmds = "\n".join(f"`/{cmd}` — {cnt:,}" for cmd, cnt in list(counts.items())[:5])
+        if not top_cmds:
+            top_cmds = "No commands logged yet."
+
+        embed = btc_embed(
+            title="Satoshi Bot Stats",
+            fields={
+                "Total Commands": format_number(total),
+                "Today / This Week": f"{format_number(today)} / {format_number(week)}",
+                "Servers": format_number(len(self.bot.guilds)),
+                "Unique Users": format_number(users),
+            },
+        )
+        embed.add_field(name="Top Commands", value=top_cmds, inline=False)
         await interaction.response.send_message(embed=embed)
 
 

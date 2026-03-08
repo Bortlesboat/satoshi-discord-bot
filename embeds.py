@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import discord
 
 BITCOIN_ORANGE = 0xF7931A
-FOOTER_TEXT = "Powered by Satoshi API | bitcoinsapi.com"
+FOOTER_TEXT = "Powered by Satoshi API | Not financial advice | bitcoinsapi.com"
 LOGO_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/240px-Bitcoin.svg.png"
 
 

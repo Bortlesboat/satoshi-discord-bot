@@ -1,3 +1,5 @@
+![Satoshi Bot](static/logo-512.png)
+
 # Satoshi Bot
 
 A Discord bot that brings real-time Bitcoin blockchain data to your server. Powered by the [Satoshi API](https://bitcoinsapi.com).
@@ -18,6 +20,7 @@ A Discord bot that brings real-time Bitcoin blockchain data to your server. Powe
 | `/supply` | Circulating supply and inflation rate |
 | `/network` | Node version and connection info |
 | `/tx <txid>` | Transaction details and confirmation status |
+| `/stats` | Bot usage statistics |
 | `/help` | List all commands |
 
 ## Add to Your Server
@@ -54,7 +57,7 @@ Discord User --> Slash Command --> Satoshi Bot (discord.py)
                                   Bot formats response --> Discord Embed
 ```
 
-The bot is a thin client. All data comes from the [Satoshi API](https://bitcoinsapi.com), a self-hostable Bitcoin REST API with 77+ endpoints.
+The bot is a thin client. All data comes from the [Satoshi API](https://bitcoinsapi.com), a self-hostable Bitcoin REST API with 73 endpoints.
 
 ## Tests
 
